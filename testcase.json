@@ -1,0 +1,40 @@
+{
+	"apps": {
+		"nctu.winlab.test": {
+			"testInfo": {
+				"testType": "BasicTest",
+				"src_host": {
+					"id": "0",
+					"iface": "ens11f3:192.168.202.1",
+					"ifaceV": "ens11f3.1:192.168.133.1"
+				},
+				"dst_host": [
+					{
+						"id": "1",
+						"iface": "eno2:192.168.201.2",
+						"ifaceV": "eno2.1:192.168.203.2"
+					}
+				],
+				"testcase": [					
+					{
+						"matchfield":[
+							"ARP_THA"
+						],
+						"treatment":[
+							"OUTPUT"
+						]
+					},
+					{
+						"matchfield": [
+							"TCP_SRC"
+						],
+						"treatment":[
+							"SetTcpSrc",
+							"OUTPUT"
+						]
+					}
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,58 @@
+{
+	"apps": {
+		"nctu.winlab.test": {
+			"testInfo": {
+				"testType": "GroupTest",
+				"src_host": {
+					"id": "0",
+					"iface": "ens11f3:192.168.202.1",
+					"ifaceV": "ens11f3.1:192.168.133.1"
+				},
+				"dst_host": [
+					{
+						"id": "1",
+						"iface": "eno3:192.168.202.2",
+						"ifaceV": "eno3.1:192.168.203.2"
+					},
+					{
+						"id": "0",
+						"iface": "ens11f1:192.168.202.6",
+						"ifaceV": "ens11f1.1:192.168.203.3"
+					}
+				],
+				"testcase": [					
+					{
+						"matchfield": ["ETH_SRC","ETH_DST"],
+						"pipeline": [
+							{
+								"tableId": "0",
+								"vlanId": "1",
+								"pipeType": "Indirect",
+								"treatment":"OUTPUT",
+								"destination": 1
+							},
+							{
+								"tableId": "1",
+								"vlanId": "1",
+								"pipeType": "Indirect",
+								"treatment": "SetEthSrc"
+							}
+						]
+					},
+					{
+						"matchfield": ["ETH_SRC","ETH_DST"],
+						"pipeline": [
+							{
+								"tableId": "0",
+								"vlanId": "1",
+								"pipeType": "Indirect",
+								"treatment":"OUTPUT",
+								"destination": 2
+							}
+						]
+					}
+				]
+			}
+		}
+	}
+}
